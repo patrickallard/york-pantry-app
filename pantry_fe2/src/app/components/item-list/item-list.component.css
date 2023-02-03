@@ -1,0 +1,48 @@
+.create-button {
+    max-width: 140px;
+    margin: 20px;
+    margin-bottom: 0;
+}
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.table-container {
+    margin-top: 10%;
+    margin-left: auto;
+    margin-right: auto;
+    flex-direction: column;
+}
+
+img {
+    width: 75px;
+    height: 75px;
+}
+
+.spacer {
+    flex: 1 1 auto;
+}
+
+@media (min-width: 576px) {
+    .cards-container {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-around;
+    }
+
+    .card {
+        flex-basis: calc(50% - 3rem);
+    }
+}
+
+@media (min-width: 992px) {
+    .card {
+        flex-basis: calc(25% - 3rem);
+    }
+}
+
+

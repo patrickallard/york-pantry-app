@@ -1,0 +1,66 @@
+<mat-toolbar color="accent">Create New Recipe</mat-toolbar>
+<div mat-dialog-content>
+  <p>Name:</p>
+  <mat-form-field>
+    <mat-label>Name</mat-label>
+    <input matInput type="text" [(ngModel)]="data.name">
+  </mat-form-field>
+  <p>Image:</p>
+  <mat-form-field>
+    <mat-label>Image</mat-label>
+    <input matInput type="text" [(ngModel)]="data.image">
+  </mat-form-field>
+  <p>Ingredients:</p>
+  <div class="example-container">
+    <h2>Pantry:</h2>
+    <!-- making direct reference to the other cdkDropList -->
+    <div cdkDropList #pantryList="cdkDropList" [cdkDropListData]="pantryItems" [cdkDropListConnectedTo]="[recipeList]" class="example-list" (cdkDropListDropped)="drop($event)">
+      <div *ngFor="let item of pantryItems">
+        <div *ngIf="item.available != false">
+          <mat-dialog-content class="example-box"  cdkDrag>
+            {{item.name}}
+          </mat-dialog-content>
+        </div>
+      </div>
+    </div>
+    <div class="example-container">
+      <h2>Included:</h2>
+      <div cdkDropList #recipeList="cdkDropList" [cdkDropListData]="data.items" [cdkDropListConnectedTo]="[pantryList]"
+        class="example-list" (cdkDropListDropped)="drop($event)">
+          <mat-option class="example-box" [value]="item.id" *ngFor="let item of data.items" cdkDrag>
+            {{item.name}}
+          </mat-option>
+      </div>
+    </div>
+    <p>Instructions:</p>
+    <mat-form-field appearance="fill">
+      <mat-label>Font size</mat-label>
+      <mat-select #fontSize value="16px" (selectionChange)="triggerResize()">
+        <mat-option value="10px">10px</mat-option>
+        <mat-option value="12px">12px</mat-option>
+        <mat-option value="14px">14px</mat-option>
+        <mat-option value="16px">16px</mat-option>
+        <mat-option value="18px">18px</mat-option>
+        <mat-option value="20px">20px</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field [style.fontSize]="fontSize.value" appearance="fill">
+      <mat-label>Instructions:</mat-label>
+      <textarea matInput [(ngModel)]="data.steps" cdkTextareaAutosize #autosize="cdkTextareaAutosize"
+        cdkAutosizeMinRows="1" cdkAutosizeMaxRows="5"></textarea>
+    </mat-form-field>
+    <p>Chef:</p>
+    <mat-form-field appearance="fill">
+      <mat-label>Owner</mat-label>
+      <!-- Issue binding the inpur field data without display an empty Object in the field preview -->
+      <mat-select [(ngModel)]="data.owner">
+        <mat-option type="number" *ngIf="ui.currentUser.getValue() != null" [value]="user.id">
+          {{ui.currentUser.value.username}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div mat-dialog-actions>
+    <button mat-button [mat-dialog-close]="data">Submit</button>
+    <button mat-button (click)="cancel()">Cancel</button>
+  </div>

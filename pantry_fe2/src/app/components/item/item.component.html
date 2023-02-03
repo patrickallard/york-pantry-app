@@ -1,0 +1,23 @@
+<mat-card class="card" *ngIf="item.available">
+  <mat-card-header>
+    <mat-card-title>{{ item.name }}</mat-card-title>
+  </mat-card-header>
+  <img mat-card-image src={{item.image}} alt="Photo of {{item.name}}">
+  <mat-card-content>
+    <!-- could write a function here to retrieve association (account id) <-> account name -->
+    <mat-card-subtitle type="string">
+      Weight:
+      {{ item.weight }}
+    </mat-card-subtitle>
+    <mat-card-subtitle type="string">
+      Calories:
+      {{ item.calories }}
+    </mat-card-subtitle>
+  </mat-card-content>
+  <div class="buttons">
+    <mat-card-actions>
+      <button class="edit-button" (click)="this.openEditDialog(item)" mat-button>Edit</button>
+      <button (click)="this.itemService.deleteItem(item.id!)" mat-button>Delete</button>
+    </mat-card-actions>
+  </div>
+</mat-card>

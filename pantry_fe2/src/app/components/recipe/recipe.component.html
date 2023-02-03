@@ -1,0 +1,29 @@
+<div class="container">
+  <div class="card">
+    <mat-card class="recipe-container" fxLayoutAlign="center center" fxFlex="0 0 calc(25% - 12px)" fxFlex.xs="0 0 100%">
+      <mat-toolbar color="accent" *ngIf="this.recipe.make">Recipe Made<mat-icon>check</mat-icon></mat-toolbar>
+      <mat-card-header>
+        <mat-card-title>{{ recipe.name }}</mat-card-title>
+      </mat-card-header>
+      <img mat-card-image src={{recipe.image}} alt="Photo of recipe">
+      <mat-card-content>
+        <!-- could write a function here to retrieve association (account id) <-> account name -->
+        <mat-card-subtitle type="string">
+          <tr *ngFor=" let item of items; let  i = index">
+            <td>{{item.name}}</td>
+          </tr>
+        </mat-card-subtitle>
+      </mat-card-content>
+      <mat-card-content>
+        <p>{{recipe.steps}}</p>
+      </mat-card-content>
+      <mat-card-actions align="end">
+        <button mat-button *ngIf="!this.recipe.make" (click)="this.recipeService.makeRecipe(recipe)">Make</button>
+        <!-- <button mat-button (click)="this.ui.showRecipeView()">View</button> -->
+        <button *ngIf="!this.recipe.make" (click)="this.openEditDialog(recipe)" mat-button>Edit</button>
+        <button *ngIf="!this.recipe.make" (click)="this.recipeService.deleteRecipe(recipe.id!)"
+          mat-button>Delete</button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</div>

@@ -1,0 +1,8 @@
+<button mat-raised-button color="primary" (click)="this.openCreateDialog()" class="create-button">Create New
+    Item</button>
+
+<div class="table-conatiner">
+    <div class="container">
+            <app-item *ngFor="let item of items" [item]="item"></app-item>
+    </div>
+</div>

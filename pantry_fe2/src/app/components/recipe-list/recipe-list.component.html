@@ -1,0 +1,8 @@
+<button mat-raised-button color="primary" (click)="this.openCreateDialog()" class="create-button">Create New
+    Recipe</button>
+
+<div class="card-container">
+    <div class="container">
+        <app-recipe *ngFor="let recipe of recipes" [recipe]="recipe"></app-recipe>
+    </div>
+</div>

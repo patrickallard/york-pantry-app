@@ -1,0 +1,32 @@
+<mat-toolbar color="accent">Create New Recipe</mat-toolbar>
+<div mat-dialog-content>
+  <p>Name:</p>
+  <mat-form-field>
+    <mat-label>Name</mat-label>
+    <input matInput type="text" [(ngModel)]="data.name">
+  </mat-form-field>
+  <p>Image:</p>
+  <mat-form-field>
+    <mat-label>Image</mat-label>
+    <input matInput type="text" [(ngModel)]="data.image">
+  </mat-form-field>
+  <p>Ingredients:</p>
+  <div class="example-container">
+    <h2>Pantry:</h2>
+    <!-- making direct reference to the other cdkDropList -->
+  <div class="example-container">
+    <h2>Included:</h2>
+    <div cdkDropList #recipeList="cdkDropList" [cdkDropListData]="data.items"
+     class="example-list" >
+      <mat-option class="example-box" [value]="item.id" *ngFor="let item of data.items"
+        cdkDrag>{{item.name}}</mat-option>
+    </div>
+  </div>
+  <p>Instructions:</p>
+      <textarea matInput [(ngModel)]="data.steps" cdkTextareaAutosize #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="1"
+        cdkAutosizeMaxRows="5"></textarea>
+</div>
+<div mat-dialog-actions>
+  <button mat-button [mat-dialog-close]="data">Submit</button>
+  <button mat-button>Cancel</button>
+</div>

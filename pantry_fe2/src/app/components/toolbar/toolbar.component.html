@@ -1,0 +1,24 @@
+<mat-toolbar color="primary">
+    <button mat-icon-button (click)="drawer.toggle()"><mat-icon>menu</mat-icon></button>
+    <span class="spacer"></span>
+    <span class="spacer"></span>
+    <span class="spacer"></span>
+    <button mat-icon-button matTooltip="Logout" (click)="this.ui.logoutUser();"
+        *ngIf="this.ui.isLoggedIn"><mat-icon>logout</mat-icon></button>
+    <button mat-icon-button matTooltip="Login" (click)="ui.showLogin()"
+        *ngIf="!this.ui.isLoggedIn"><mat-icon>login</mat-icon></button>
+</mat-toolbar>
+<mat-toolbar color="accent" style="height: 20px;">
+    <span id="date"></span>
+    <span class="spacer"></span>
+    <span class=user *ngIf="this.ui.getCurrentUser() | async as user">Welcome, {{user.username}}</span>
+</mat-toolbar>
+<mat-drawer-container hasBackdrop="true" autosize>
+    <mat-drawer #drawer mode="side">
+        <mat-toolbar color="accent">
+            <span *ngIf="this.ui.getCurrentUser() | async as user">Welcome, {{user.username}}</span>
+            <span class="spacer"></span>
+            <button mat-icon-button *ngIf="this.ui.isLoggedIn" (click)="this.ui.changeToProfile()"><mat-icon>account_box</mat-icon></button>
+        </mat-toolbar>
+        <ul><button mat-button *ngIf="this.ui.isLoggedIn" (click)="this.ui.showRecipeDashboard()">View Recipes</button></ul>
+        <ul><button mat-button *ngIf="this.ui.isLoggedIn" (click)="this.ui.showDashboard()">View Pantry</button></ul>

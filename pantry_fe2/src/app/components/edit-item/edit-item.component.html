@@ -1,0 +1,27 @@
+<mat-toolbar color="accent">Edit Item</mat-toolbar>
+<div mat-dialog-content>
+    <p>Name:</p>
+    <mat-form-field>
+        <mat-label>Name</mat-label>
+        <input matInput type="text" [(ngModel)]="data.name">
+    </mat-form-field>
+    <p>Image:</p>
+    <mat-form-field>
+        <mat-label>Image</mat-label>
+        <input matInput type="text" [(ngModel)]="data.image">
+    </mat-form-field>
+    <p>Weight:</p>
+    <mat-form-field>
+        <mat-label>Weight</mat-label>
+        <input matInput type="number" [(ngModel)]="data.weight">
+    </mat-form-field>
+    <p>Calories:</p>
+    <mat-form-field>
+        <mat-label>Calories</mat-label>
+        <input matInput type="number" [(ngModel)]="data.calories">
+    </mat-form-field>
+</div>
+<div mat-dialog-actions>
+    <button mat-button [mat-dialog-close]="data">Submit</button>
+    <button mat-button (click)="cancel()">Cancel</button>
+</div>

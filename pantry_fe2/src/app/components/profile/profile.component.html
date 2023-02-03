@@ -1,0 +1,28 @@
+<div class="container">
+  <mat-card class="card">
+    <mat-card-header *ngIf="this.ui.getCurrentUser() | async as user">
+      <mat-card-title>{{ user.username }}</mat-card-title>
+    </mat-card-header>
+    <img mat-card-image src="{{ imageUrl }}" alt="Photo of a Shiba Inu">
+    <!-- Profile Picture Form -->
+    <form [formGroup]="registrationForm">
+      <input hidden type='file' id="imageUpload" accept=".png, .jpg, .jpeg" #fileInput (change)="uploadFile($event)"/>
+      <!-- Submit Button -->
+      <button mat-button type="submit" class="btn btn-danger btn-lg btn-block" (click)="fileInput.click()">Upload
+        Image</button>
+    </form>
+    <mat-card-content *ngIf="this.ui.getCurrentUser() | async as user">
+      <mat-card-subtitle type="string">
+        Email:
+        {{ user.email }}
+      </mat-card-subtitle>
+    </mat-card-content>
+    <mat-card-actions align="end" *ngIf="this.ui.getCurrentUser() | async as user">
+      <button (click)="this.openEditDialog(account)" mat-button>Edit</button>
+      <button (click)="this.ui.deleteProfileById(user.id!)" mat-button>Delete</button>
+    </mat-card-actions>
+  </mat-card>
+  <div *ngIf="this.ui.displayEdit">
+    <app-edit-profile></app-edit-profile>
+  </div>
+</div>
