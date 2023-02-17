@@ -2,7 +2,7 @@
  
 ## Description
 The pantry project is a full-stack, lightweight, inventory management application designed to help users keep track of items in their pantry. Users can set up individual accounts, giving them access to separate pantries. 
-Adding items to recipes changes the item's availability, and marks the item as 'included' in the recipe. Recipes can be 'made' which removes the included items from the pantry.
+Adding items to recipes changes the item's availability, and marks the item as 'included' in the recipe. Recipes can be 'made' which removes the included item(s) from the pantry.
 
 All entities have full CRUD, including user accounts. 
 
